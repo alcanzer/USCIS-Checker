@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  myapp:
+    depends_on:
+      - mymongo
+    image: alcanzer/uscis
+    environment:
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_HOST: mymongo
+      SPRING_DATA_MONGODB_DATABASE: testdb
+    ports:
+      - 8080:8080
+  mymongo:
+    image: mongo
+    volumes:
+      - mongodb
+    ports:
+      - 27017:27017
